@@ -1,0 +1,12 @@
+
+.titolo {
+    padding-top: 5em;
+}
+
+.linkhome {
+    text-decoration: none;
+}
+
+.divhome:hover {
+    cursor: pointer;
+}
