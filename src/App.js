@@ -20,26 +20,28 @@ export const CarContext = createContext({})
 
 
 function App() {
-  const [carItems, setCarItems] = useState ({})
+  const [carItems, setCarItems] = useState([])
   return (
-    <BrowserRouter>
-      <BasicExample />
-      <Routes>
-        <Route exact path="/" element={<Login />} />
-        <Route path="/registrati" element={<Registrati />} />
+    <CarContext.Provider value={{ carItems, setCarItems }}>
+      <BrowserRouter>
+        <BasicExample />
+        <Routes>
+          <Route exact path="/" element={<Login />} />
+          <Route path="/registrati" element={<Registrati />} />
 
-        <Route element={<LineaProtetta />}>
-          <Route path="/products/:productId" element={<Dettagli />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/carrello" element={<Carrello />} />
-          <Route path="/prodotti" element={<Prodotti />} />
-          <Route path="/profilo" element={<Profilo />} />
-          <Route path="/cosplay" element={<Cosplay />} />
-          <Route path="/manga" element={<Manga />} />
-          <Route path="/statues" element={<Statues />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+          <Route element={<LineaProtetta />}>
+            <Route path="/products/:productId" element={<Dettagli />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/carrello" element={<Carrello />} />
+            <Route path="/prodotti" element={<Prodotti />} />
+            <Route path="/profilo" element={<Profilo />} />
+            <Route path="/cosplay" element={<Cosplay />} />
+            <Route path="/manga" element={<Manga />} />
+            <Route path="/statues" element={<Statues />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </CarContext.Provider>
   );
 }
 

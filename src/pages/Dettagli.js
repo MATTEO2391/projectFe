@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Navbar from '../components/Navbar/Nvb'
 import MyFooter from '../components/Footer/MyFooter'
 import './home.css'
@@ -7,15 +7,17 @@ import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
 import axios from "axios";
+import { CarContext } from "../App";
+
 
 
 
 const Dettagli = () => {
     const [product, setProduct] = useState(null)
-    console.log(product);
+    
 
     const { productId } = useParams()
-    console.log(productId);
+    
 
     const getProduct = async () => {
         try {
@@ -29,6 +31,29 @@ const Dettagli = () => {
     useEffect(() => {
         getProduct()
     }, [productId])
+
+
+    const { carItems, setCarItems } = useContext(CarContext)
+    console.log(carItems);
+    
+
+    const addToCart = async () => {
+
+        setCarItems(
+            [
+                ...carItems,
+                {
+                    id: product._id,
+                    nome: product.nome,
+                    cover1: product.cover1,
+                    prezzo: product.prezzo,
+                    quantity: 1
+                }
+            ]
+        )
+    }
+
+
 
     return (
         <div className='sfondo sfondo2'>
@@ -48,11 +73,9 @@ const Dettagli = () => {
                             <p className="mt-5">{product.description}</p>}
                         {product &&
                             <p className="fs-3 mt-4">{product.prezzo} $</p>}
-                        <button className="glow-on-hover mt-5">Aggiungi al Carrello</button>
+                        <button className="glow-on-hover mt-5" onClick={addToCart}>Aggiungi al Carrello</button>
 
                     </Col>
-
-
                 </Row>
             </Container>
             <MyFooter />

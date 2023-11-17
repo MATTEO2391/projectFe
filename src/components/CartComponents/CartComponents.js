@@ -8,10 +8,6 @@ import { CarContext } from "../../App";
 const CartComponent = ({ nome, prezzo, cover1 }) => {
     const { carItems, setCarItems } = useContext(CarContext)
 
-   const handleRemove = () => {
-        console.log("id", cartItems.filter((item) => item.id !== cartItems.id))
-    }
-
     return (
         <>
             <Card style={{ width: '18rem' }} className='mt-2 mx-3 mb-4 bg-black text-white card'>
@@ -22,7 +18,6 @@ const CartComponent = ({ nome, prezzo, cover1 }) => {
                 <ListGroup className="list-group-flush border-white">
                     <ListGroup.Item className='bg-black text-white'>{prezzo}$</ListGroup.Item>
                 </ListGroup>
-                <button className='glow-on-hover text-decoration-none mt-3 mb-2 d-flex justify-content-center align-self-center align-items-center' onClick={handleRemove}>Rimuovi dal Carrello</button>
             </Card>
         </>
     )
