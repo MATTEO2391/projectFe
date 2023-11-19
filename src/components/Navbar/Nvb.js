@@ -30,7 +30,7 @@ function BasicExample() {
   return (
     <Navbar expand="lg" className="bg-primary fixed-top box1">
       <Container>
-        <Navbar.Brand onClick={() => home()} className='fw-bold'>HOME</Navbar.Brand>
+        <Navbar.Brand onClick={() => home()} className='fw-bold box2'>HOME</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
