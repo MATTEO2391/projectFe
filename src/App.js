@@ -11,18 +11,13 @@ import BasicExample from "./components/Navbar/Nvb";
 import Manga from "./pages/Manga";
 import Cosplay from "./pages/Cosplay";
 import Statues from "./pages/Satues";
-import { createContext, useState } from "react";
-
-
-export const CarContext = createContext({})
-
-
+import { CartProvider } from "./components/Context/CartContext";
 
 
 function App() {
-  const [carItems, setCarItems] = useState([])
+ 
   return (
-    <CarContext.Provider value={{ carItems, setCarItems }}>
+    <CartProvider>
       <BrowserRouter>
         <BasicExample />
         <Routes>
@@ -41,7 +36,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-    </CarContext.Provider>
+    </CartProvider>
   );
 }
 

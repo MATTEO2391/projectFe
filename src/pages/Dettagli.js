@@ -7,14 +7,14 @@ import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
 import axios from "axios";
-import { CarContext } from "../App";
-
+import { CartContext } from "../components/Context/CartContext";
 
 
 
 const Dettagli = () => {
     const [product, setProduct] = useState(null)
-    
+
+    const { addToCart } = useContext(CartContext);    
 
     const { productId } = useParams()
     
@@ -33,27 +33,10 @@ const Dettagli = () => {
     }, [productId])
 
 
-    const { carItems, setCarItems } = useContext(CarContext)
-    console.log(carItems);
-    
-
-    const addToCart = async () => {
-
-        setCarItems(
-            [
-                ...carItems,
-                {
-                    id: product._id,
-                    nome: product.nome,
-                    cover1: product.cover1,
-                    prezzo: product.prezzo,
-                    quantity: 1
-                }
-            ]
-        )
-    }
-
-
+    const handleAddToCart = (product) => {
+		addToCart(product);
+        alert("Hai aggiunto il prodotto al carrello")
+	};
 
     return (
         <div className='sfondo sfondo2'>
@@ -73,7 +56,7 @@ const Dettagli = () => {
                             <p className="mt-5">{product.description}</p>}
                         {product &&
                             <p className="fs-3 mt-4">{product.prezzo} $</p>}
-                        <button className="glow-on-hover mt-5" onClick={addToCart}>Aggiungi al Carrello</button>
+                        <button className="glow-on-hover mt-5" onClick={() => handleAddToCart(product)}>Aggiungi al Carrello</button>
 
                     </Col>
                 </Row>
